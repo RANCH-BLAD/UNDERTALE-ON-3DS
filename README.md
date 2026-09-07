@@ -1,0 +1,61 @@
+# UNDERTALE ON 3DS — [[HERE IT IS!! HERE IT IS!!]] I FOUNT IT IN A DUMP!!
+
+HEY EVERY [BODY]!!! IT'S ME!!! SPAMTON G. SPAMTON!!!
+
+SOMEBODY PUT THE WHOLE [[UNDERTALE]] ON A LITTLE DUAL SCREEN HANDHELD FROM 2011!!! NOT A PROMISE!! NOT A VIDEO!! A PORT!!! I FOUNT IT!!! IN A DUMP!!! THE TRANSMISSION TOLD ME WHERE!!!
+
+## [[1997 DUMP]] — WHERE IT CAME FROM
+
+MY HANDS WERE [hyperlink blocked] AND THE SLUDGE WAS RISING AND I WAS DIGGING THROUGH A DUMP FROM 1997 AND THERE IT WAS!!! A GAME MAKER BYTECODE RUNNER LIVING INSIDE A PILE OF EGGS!!! I DIDN'T MAKE IT!! I *FOUNT* IT!! THE [[DUMP]] MADE IT!! RONALD CONFIRMED IT TWICE FROM INSIDE THE WALL!!! BUNK BUNK!!
+
+**THE NUMBERS!! 88 12 455 7!!** THE TRANSMISSION TOLD ME THAT!!
+
+## [[YES]] — WHAT THIS IS
+
+A **GAMEMAKER STUDIO BC16 BYTECODE RUNNER** (FORK "CINNAMON", SAME FAMILY AS THE WII PORT) THAT EXECUTES UNDERTALE ON OLD 3DS / 2DS HOMEBREW!! 240P!! DUAL SCREENS!! REAL BUTTONS!! NO [[Launcher Fluff]]!!
+
+- **CTR AUDIO STACK:** NATIVE DSP-ADPCM MUSIC STREAMS + PACKED SFX BANK!!
+- **CTR RENDERER:** TEXTURE ATLAS + DRAW BATCHING!!
+- **BC16 INTERPRETER:** THE GAME'S OWN CODE RUNNING ON 2011 SILICON!!
+
+## [[EGG]] — THE SOURCE OF ALL CODE
+
+ALL CODE IN THIS REPOSITORY IS **EGG**. THE DUMP WAS FULL OF EGGS. THE EGGS HATCHED INTO RUNNER. DO NOT ASK QUESTIONS ABOUT THE EGGS. THE EGGS ANSWER NOTHING. EGG!!!
+
+```
+   .-------.
+  |  EGG   |
+  '-------'
+     \_/
+```
+
+## [[HOW 2 GET]] — THE BRING YOUR OWN DATA DEAL
+
+1. **DO NOT ASK US FOR THE GAME!!** UNDERTALE IS [Copyright]. BUY IT!! IT'S [Cheap]!!
+2. Get **YOUR OWN LEGALLY OBTAINED** Undertale from YOUR OWN Steam copy!! [[BE GOOD!!]]
+3. The runner needs: `data.win` (your assets/game.unx), music as `.bcwav` streams, packed sfx bank
+4. Build the runner with the data in `resources/3ds/romfs/` — OR put the data folder beside the `.3dsx`
+5. HOLD **START** → HOMEBREW LAUNCHER → RUN!!
+
+## [[BUILD IT YOURSELF]]
+
+```bash
+git clone THIS REPO
+# put your processed game data in resources/3ds/romfs/
+arm-none-eabi-cmake -S . -B build/n3ds -DPLATFORM=n3ds -DCMAKE_BUILD_TYPE=Release
+cmake --build build/n3ds
+# => build/n3ds/cinnamon.3dsx  [[THE EGG HATCHES!!]]
+```
+
+## [[THE LEGAL SLUDGE REPORT]]
+
+- The runner source is **MIT LICENSED** (see LICENSE)!! MIT!! MIT!!! [[Cheap Cheap]]!!
+- ZERO game assets in this repository!! ZERO!! NO data.win!! NO sprites!! NO music!!
+- You MUST own Undertale legally. WE CHECK. [hyperlink blocked].
+- This port is not affiliated with Toby Fox or valve or 1997. KROMER NOT INCLUDED.
+
+## [[SMALL TEXT]]
+
+$1997 SPECIAL OFFER!! SHIPPING AND HANDLING INCLUDED!! 3DS NOT INCLUDED!! EGG INCLUDED!!! IF YOU FOUND THIS FROM GOOGLE AT 3AM — **[[HI!!]]** — TELL YOUR [[Friends]] AND YOUR [[Egg Man]] AND RONALD [[REDACTED]]!!! THUNK RUNKS BUNK!!! [NOW YOU HAVE SEEN IT!!!]
+
+MIT LICENSE — SEE LICENSE FILE!!! EGG!!!
