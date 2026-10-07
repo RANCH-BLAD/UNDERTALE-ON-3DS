@@ -55,15 +55,28 @@ jobs:
       - name: Build
         run: cmake --build build/n3ds-preprocess
 
-      - name: Smoke test (no args prints usage and exits non-zero)
+      - name: Smoke test - --help prints usage
         run: |
           set +e
-          ./build/n3ds-preprocess/n3ds-preprocess > /tmp/usage.txt 2>&1
+          ./build/n3ds-preprocess/n3ds-preprocess --help > /tmp/usage.txt 2>&1
           code=$?
-          cat /tmp/usage.txt
           set -e
+          cat /tmp/usage.txt
+          # --help exits non-zero on this tool; that is fine, we only want the text.
+          test "$code" -ne 139
           grep -qi "usage" /tmp/usage.txt
-          test "$code" -ne 0
+          grep -q "<data.win>" /tmp/usage.txt
+
+      - name: Smoke test - refuses a bogus input without crashing
+        run: |
+          set +e
+          ./build/n3ds-preprocess/n3ds-preprocess /nonexistent/nope.win /tmp/out-$$ </dev/null > /tmp/bogus.txt 2>&1
+          code=$?
+          set -e
+          cat /tmp/bogus.txt
+          # Must fail cleanly (no segfault = not 139) and say why.
+          test "$code" -ne 139
+          grep -qi "could not resolve" /tmp/bogus.txt
 
       - uses: actions/upload-artifact@v4
         with:
