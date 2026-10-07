@@ -1,0 +1,83 @@
+name: Site link check
+
+# Fails the build if any link or asset on the published site 404s.
+# Pages only serves docs/, so a relative path that escapes docs/ is a real bug.
+
+on:
+  push:
+    branches: [main]
+    paths: ['docs/**', '.github/workflows/**']
+  pull_request:
+    paths: ['docs/**']
+  workflow_dispatch:
+  schedule:
+    # re-check monthly; external links rot
+    - cron: '17 4 1 * *'
+
+jobs:
+  links:
+    name: audit docs/ links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Every relative link must resolve inside docs/
+        run: |
+          python3 - <<'PY'
+          import os, re, sys, urllib.parse
+          root = "docs"
+          idx = os.path.join(root, "index.html")
+          html = open(idx, encoding="utf-8").read()
+          links = re.findall(r'(?:href|src)="([^"]+)"', html)
+          bad = []
+          for l in sorted(set(links)):
+              if l.startswith(('data:', '#', 'mailto:', 'tel:')):
+                  continue
+              if l.startswith(('http://', 'https://', '//')):
+                  continue          # external: checked separately below
+              if l.startswith('/'):
+                  bad.append((l, "root-absolute; Pages serves the repo under a subpath"))
+                  continue
+              target = os.path.normpath(os.path.join(root, urllib.parse.urlparse(l).path))
+              if not os.path.exists(target):
+                  bad.append((l, "missing file: " + target))
+          if bad:
+              print("BROKEN LOCAL LINKS:")
+              for l, why in bad:
+                  print("  %-40s %s" % (l, why))
+              sys.exit(1)
+          print("all local links resolve inside docs/")
+          PY
+
+      - name: No relative path may escape docs/ (../ reaches off the site)
+        run: |
+          if grep -oE '(href|src)="[^"]*\.\./[^"]*"' docs/index.html; then
+            echo "::error::a relative link escapes docs/ and will 404 on Pages"
+            exit 1
+          fi
+          echo "no escaping relative paths."
+
+      - name: External links must resolve
+        run: |
+          python3 - <<'PY'
+          import re, subprocess, sys
+          html = open("docs/index.html", encoding="utf-8").read()
+          urls = sorted({u for u in re.findall(r'(?:href|src)="(https?://[^"]+)"', html)})
+          bad = []
+          for u in urls:
+              r = subprocess.run(
+                  ["curl","-sL","-o","/dev/null","-w","%{http_code}",
+                   "--max-time","25","-A","Mozilla/5.0", u],
+                  capture_output=True, text=True)
+              code = r.stdout.strip()
+              ok = code.startswith("2")
+              print("%-4s %s" % (code, u))
+              if not ok:
+                  bad.append((u, code))
+          if bad:
+              print("\nBROKEN EXTERNAL LINKS:")
+              for u, c in bad:
+                  print("  %s -> %s" % (c, u))
+              sys.exit(1)
+          print("\nall external links resolve.")
+          PY

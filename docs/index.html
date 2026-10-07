@@ -3,69 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UNDERTALE ON 3DS — the cathedral archive</title>
+<title>U3DS — UNDERTALE on 3DS · the cathedral archive</title>
 <meta name="description" content="UNDERTALE running natively on old 3DS/2DS homebrew. Bring your own data.win. Convert, copy, play.">
+<meta name="theme-color" content="#000a1a">
 <link rel="stylesheet" href="assets/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥚</text></svg>">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
 
+<div class="scanlines" aria-hidden="true"></div>
+<div class="pixelgrid" aria-hidden="true"></div>
+
 <header class="hero">
-  <div class="stained"></div>
   <div class="hero-inner">
-    <p class="eyebrow">[[ARCHIVE ENTRY 1997]] · PROJECT SUNSHINE × CINNAMON · CTR-3DS</p>
-    <h1>UNDERTALE<span>on a real 3DS</span></h1>
+    <img class="logo" src="assets/logo.svg" alt="" width="96" height="96">
+    <p class="eyebrow">[ ARCHIVE ENTRY 1997 ] · PROJECT SUNSHINE × CINNAMON · CTR-3DS</p>
+    <h1>U3DS<span>UNDERTALE on a real 3DS</span></h1>
     <p class="lede">
       A GameMaker Studio <b>BC16</b> bytecode runner, rebuilt for 2011 silicon.
-      Two screens, 240p, DSP-ADPCM audio, real buttons.
+      Two screens. 240p. DSP-ADPCM audio. Real buttons.
       <b>Zero game assets in this repo</b> — you bring your own.
     </p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#convert">Convert my data.win</a>
-      <a class="btn" href="#archive">Read the archive</a>
-      <a class="btn" href="#build">Build it</a>
-    </div>
+    <nav class="hero-cta">
+      <a class="btn btn-primary" href="#convert">▶ Convert my data.win</a>
+      <a class="btn" href="#archive">▤ Read the archive</a>
+      <a class="btn" href="#build">⚙ Build it</a>
+    </nav>
     <p class="banner-note">NO GAME DATA SHIPPED · MIT LICENSED PORT CODE · EGG INCLUDED</p>
   </div>
 </header>
 
 <main>
 
-<!-- ══════════════════ SPAMTON SPEAKS ══════════════════ -->
+<!-- ══════════════ SPAMTON ══════════════ -->
 <section class="spamton" id="spamton">
   <div class="spamton-box">
     <div class="spamton-head">
       <span class="spamton-name">SPAMTON G. SPAMTON</span>
-      <span class="spamton-tag">[[CATHEDRAL ARCHIVIST]]</span>
+      <span class="spamton-tag">[ CATHEDRAL ARCHIVIST ]</span>
     </div>
     <div class="spamton-body">
-      <p>HEY EVERY [[BODY]]!! IT'S ME!! I'M THE ONE WHO CATALOGUES THE <b>[[IMPOSSIBLE]]</b> IN HERE!! YOU'RE STANDING IN THE <span class="hl">CATHEDRAL ARCHIVE</span> NOW — MIND THE [[Stained Glass]]!!</p>
-      <p>SOMEBODY — A [[Little Sponge]] WITH A SOLDERING IRON — PUT THE WHOLE <b>[UNDERTALE]</b> ON A DUAL-SCREEN HANDHELD FROM <b>2011</b>!!! NOT A PROMISE!! NOT A [[Video Essay]]!! A <b>PORT</b>!!!</p>
-      <p>AND THE BEST PART?? THE <span class="hl">[[BEST PART]]</span>!! THEY DIDN'T SHIP A SINGLE [[Copyrighted Asset]]!! YOU BRING YOUR <b>OWN</b> data.win AND THE ARCHIVE DOES THE [[KROMER]]-FREE CONVERSION RIGHT HERE!! <span class="blink">BIG SHOT!! BIG SHOT!!</span></p>
+      <p>HEY EVERY [BODY]!! IT'S ME!! I'M THE ONE WHO CATALOGUES THE <b>[IMPOSSIBLE]</b> IN HERE!! YOU'RE STANDING IN THE <span class="hl">CATHEDRAL ARCHIVE</span> NOW — MIND THE [Stained Glass]!!</p>
+      <p>SOMEBODY — A [Little Sponge] WITH A SOLDERING IRON — PUT THE WHOLE <b>[UNDERTALE]</b> ON A DUAL-SCREEN HANDHELD FROM <b>2011</b>!!! NOT A PROMISE!! NOT A [Video Essay]!! A <b>PORT</b>!!!</p>
+      <p>AND THE BEST PART?? THE <span class="hl">[BEST PART]</span>!! THEY DIDN'T SHIP A SINGLE [Copyrighted Asset]!! YOU BRING YOUR <b>OWN</b> data.win AND THE ARCHIVE DOES THE [KROMER]-FREE CONVERSION RIGHT HERE!! <span class="blink">BIG SHOT!! BIG SHOT!!</span></p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ CONVERTER ══════════════════ -->
+<!-- ══════════════ CONVERTER ══════════════ -->
 <section id="convert" class="section">
   <h2><span class="num">01</span> The Converter</h2>
-  <p class="sub">Point it at <code>data.win</code> from <b>your own legally purchased copy</b> of Undertale. The archive verifies it, then hands you the one-command patcher that turns it into a card-ready folder.</p>
+  <p class="sub">Point it at <code>data.win</code> from <b>your own legally purchased copy</b> of Undertale. The archive verifies it locally — nothing is uploaded — then hands you the one-command patcher that turns it into a card-ready folder.</p>
 
   <div class="converter">
     <div class="drop" id="drop">
       <input type="file" id="file" accept=".win,.unx" hidden>
       <div class="drop-inner">
-        <div class="drop-icon">⬇</div>
+        <div class="drop-icon">▼</div>
         <p class="drop-title">Drop <code>data.win</code> here</p>
-        <p class="drop-sub">or <button class="link" id="browse">browse your files</button></p>
-        <p class="drop-hint">Steam path: <code>…/steamapps/common/Undertale/data.win</code> —<br>the game ships it as <code>game.unx</code> sometimes. Either is fine.</p>
+        <p class="drop-sub">or <button class="link" id="browse" type="button">browse your files</button></p>
+        <p class="drop-hint">Steam path: <code>…/steamapps/common/Undertale/data.win</code><br>
+        the game ships it as <code>game.unx</code> sometimes. Either is fine.</p>
       </div>
     </div>
 
     <div class="report" id="report" hidden>
       <h3>Analysis</h3>
       <table class="kv" id="kv"></table>
-      <div id="verdict"></div>
+      <div class="verdict" id="verdict"></div>
     </div>
   </div>
 
@@ -73,7 +78,8 @@
     <div class="step">
       <span class="step-n">1</span>
       <h4>Get the patcher</h4>
-      <p>Download <code>u3ds-patcher.zip</code> from <a href="../../releases/latest">Releases</a>. It contains the converter, the audio/tex tooling, and the runner.</p>
+      <p>Download <code>u3ds-patcher.zip</code> from
+        <a href="https://github.com/RANCH-BLAD/UNDERTALE-ON-3DS/releases/latest">Releases</a>.</p>
     </div>
     <div class="step">
       <span class="step-n">2</span>
@@ -84,29 +90,30 @@
     <div class="step">
       <span class="step-n">3</span>
       <h4>Copy &amp; play</h4>
-      <p>Copy <code>U3DS-out/3ds</code> onto your SD card root, put your own <code>data.win</code> at <code>sdmc:/3ds/U3DS/</code>, and launch <b>U3DS</b> from the Homebrew Launcher.</p>
+      <p>Copy <code>U3DS-out/3ds</code> onto your SD card root, put your own
+      <code>data.win</code> at <code>sdmc:/3ds/U3DS/</code>, launch <b>U3DS</b>.</p>
     </div>
   </div>
 
   <div class="notice">
-    <b>On the fully in-browser converter.</b> The conversion is heavy native code
-    (texture pages via <code>tex3ds</code>, ImageMagick, a 63&nbsp;MB parse, ~400&nbsp;MB of output).
-    Running it inside the page needs that toolchain rebuilt for WebAssembly — that work is
-    <b>in progress</b>. Everything the page can do today — verify your file, then generate the
-    assets locally with one command — is below and works right now.
+    <b>On the fully in-browser converter.</b> The conversion is heavy native code —
+    texture pages via <code>tex3ds</code>, ImageMagick, a 61&nbsp;MB parse, ~790&nbsp;MB of output.
+    Running that inside the page needs the toolchain rebuilt for WebAssembly; that work is
+    <b>not finished</b>. What the page does today is real: it inspects your file and tells you
+    whether it's the right version. The one-command patcher below does the rest.
   </div>
 </section>
 
-<!-- ══════════════════ THE ARCHIVE ══════════════════ -->
+<!-- ══════════════ ARCHIVE ══════════════ -->
 <section id="archive" class="section">
   <h2><span class="num">02</span> THE ARCHIVE — how the impossible got catalogued</h2>
   <p class="sub">Every hard-won number behind this port. Written down because each one cost a night.</p>
 
   <div class="spamton small">
     <div class="spamton-box">
-      <div class="spamton-head"><span class="spamton-name">SPAMTON</span><span class="spamton-tag">READS THE [[Ledger]]</span></div>
+      <div class="spamton-head"><span class="spamton-name">SPAMTON</span><span class="spamton-tag">[ READS THE LEDGER ]</span></div>
       <div class="spamton-body">
-        <p>THIS IS THE [[Fine Print]] EVERYONE SKIPS!! READ IT ANYWAY!! IT'S WHERE THE <b>REAL</b> [[Numbers]] LIVE!! THE NUMBERS!! <b>88 12 455 7!!</b></p>
+        <p>THIS IS THE [Fine Print] EVERYONE SKIPS!! READ IT ANYWAY!! IT'S WHERE THE <b>REAL</b> [Numbers] LIVE!! THE NUMBERS!! <b>88 12 455 7!!</b></p>
       </div>
     </div>
   </div>
@@ -114,76 +121,73 @@
   <div class="grid">
     <article class="card">
       <h3>What a GameMaker game actually is</h3>
-      <p>Undertale ships as <code>data.win</code> — a 63&nbsp;MB container of chunked, offset-addressed data
-      and <b>BC16</b> bytecode. No source. No symbols. The port is a from-scratch interpreter for that
-      bytecode plus a loader for the chunk format: <code>GEN8</code>, <code>OPTN</code>, <code>STRG</code>,
-      <code>TXTR</code>, <code>TPAG</code>, <code>SPRT</code>, <code>BGND</code>, <code>ROOM</code>,
-      <code>OBJT</code>, <code>CODE</code>, <code>FONT</code>, <code>SOND</code>, <code>AUDO</code>,
-      <code>AGRP</code>, <code>FUNC</code>, <code>VARI</code>.</p>
-      <p>The runner executes the game's own VM: stack, instance scope, <code>with()</code>, alarms,
-      collisions, the event ordering, and the whole built-in function surface. When the
-      original game asks for <code>draw_self()</code>, it has to mean exactly what it meant in 2016.</p>
+      <p>Undertale ships as <code>data.win</code> — a 61&nbsp;MB container of chunked, offset-addressed
+      data plus <b>BC16</b> bytecode. No source. No symbols. The port is a from-scratch interpreter
+      for that bytecode and a loader for the chunk format: <code>GEN8</code>, <code>OPTN</code>,
+      <code>STRG</code>, <code>TXTR</code>, <code>TPAG</code>, <code>SPRT</code>, <code>BGND</code>,
+      <code>ROOM</code>, <code>OBJT</code>, <code>CODE</code>, <code>FONT</code>, <code>SOND</code>,
+      <code>AUDO</code>, <code>AGRP</code>.</p>
+      <p>When the original 2016 game calls <code>draw_self()</code>, or adds a draw event at depth 12,
+      or spawns a bullet with <code>instance_create</code>, it has to mean <b>exactly</b> what it meant
+      then. The game is not reimplemented. It is <i>executed</i>.</p>
     </article>
 
     <article class="card">
-      <h3>Two screens, one machine</h3>
-      <p>400×240 up top, 320×240 below, 268&nbsp;MHz ARM11, and a GPU that wants everything
-      power-of-two. Textures get packed into a <b>fragmented per-page atlas</b> with a room
-      manifest so a scene only streams the pages it needs. Draws batch; a page budget caps
-      residency. On the old 3DS the whole atlas cannot be resident — eviction is demand-driven,
-      never eager, because eager flushing is exactly what makes a room seam visibly "reload".</p>
+      <h3>Two screens, 268 MHz</h3>
+      <p>400×240 up top, 320×240 below — and a GPU that wants everything power-of-two. Textures are
+      packed into a <b>fragmented per-page atlas</b> with a room manifest, so a scene streams only the
+      pages it needs. Draws batch; a residency budget caps memory.</p>
+      <p>On an Old 3DS the whole atlas <i>cannot</i> be resident. Eviction is demand-driven — eager
+      flushing is exactly what makes a room seam visibly "reload" on every step.</p>
     </article>
 
     <article class="card">
       <h3>Audio: the DSP is not your PC</h3>
-      <p>Everything is ADPCM through the hardware DSP. Music streams from file in native
-      ADPCM; sound effects live in a packed bank. There are <b>24 voices</b> total — and
-      GameMaker happily retriggers a text blip faster than the 1.7-second sample can finish,
-      so the pool fills and later sounds are silently dropped. The fix is to steal the oldest
-      non-stream voice when the pool is full, and <b>always ask for a free channel first</b> —
-      getting that order wrong silences every sound in the game.</p>
+      <p>Everything is ADPCM through the hardware DSP. Music streams from file in native ADPCM; sound
+      effects live in a packed bank. There are <b>24 voices</b>, total — and GameMaker retriggers a
+      text blip faster than the 1.7-second sample can finish, so later sounds are dropped silently.</p>
+      <p>The fix is to steal the oldest non-stream voice when the pool is full, and <b>always ask for a
+      free channel first</b>. Getting that order backwards silences every sound in the game.</p>
     </article>
 
     <article class="card">
       <h3>THE HEAP. The 8 megabyte wall.</h3>
-      <p>This is the one that killed builds. After parsing a 63&nbsp;MB <code>data.win</code>, an
-      <b>Old 3DS</b> has roughly <b>8.6&nbsp;MB</b> of application heap left. The 17.7&nbsp;MB sound bank
-      <i>cannot</i> be a single app-heap allocation — it goes to the separate linear heap.
-      A failing <code>malloc</code> that calls <code>abort()</code> doesn't show a crash screen; it tears
-      services down mid-frame and the evidence points somewhere absurd, like <code>hidScanInput</code>
-      reading a null shared memory. Every hot path had to learn to fail soft and log instead.</p>
+      <p>After parsing a 61&nbsp;MB <code>data.win</code>, an <b>Old 3DS</b> has roughly <b>8.6&nbsp;MB</b>
+      of app heap left. The 17.7&nbsp;MB sound bank <i>cannot</i> be a single app-heap allocation — it
+      goes to the separate linear heap.</p>
+      <p>And the cruel part: an allocation that fails and calls <code>abort()</code> shows no crash
+      screen. It tears services down <i>mid-frame</i>, so the dump points somewhere absurd, like
+      <code>hidScanInput</code> reading null shared memory. Every hot path had to learn to fail soft
+      and log.</p>
     </article>
 
     <article class="card">
       <h3>Three bugs that looked like something else</h3>
       <ul>
-        <li><b>The stack.</b> A 3DSX gets a 32&nbsp;KB main-thread stack. Deep script call chains
-        walked straight off it. Dump showed the stack pointer <i>below</i> the image end, mid-VM.
-        Now 256&nbsp;KB.</li>
-        <li><b>The shadowing.</b> The music resolver matched exact filenames, so a raw
-        <code>.ogg</code> sitting beside its converted <code>.bcwav</code> twin fed Vorbis bytes to the
-        CWAV parser forever.</li>
+        <li><b>The stack.</b> A 3DSX gets a 32&nbsp;KB main-thread stack. Deep script chains walked off
+        it; the dump showed the stack pointer <i>below</i> the image end, mid-VM. Now 256&nbsp;KB.</li>
+        <li><b>The shadowing.</b> The music resolver matched exact filenames, so a raw <code>.ogg</code>
+        beside its converted <code>.bcwav</code> twin fed Vorbis bytes to the CWAV parser forever.</li>
         <li><b>The ghosts.</b> 46 music cues — piano notes, the drum kit, the dial-up — exist
         <i>only</i> embedded inside <code>data.win</code>'s <code>AUDO</code> chunk. No file to convert,
-        so they were permanently silent until the preprocessor learned to reach into the chunk.</li>
+        so they were silent until the preprocessor learned to reach inside the chunk.</li>
       </ul>
     </article>
 
     <article class="card">
       <h3>The pipeline, end to end</h3>
       <p>Your <code>data.win</code> goes in, and out comes a card-shaped tree:</p>
-      <pre class="flow">data.win ─┬─▶ texture atlas (per-page .t3x) + direct assets
-          ├─▶ streamed music  → 248 × .bcwav   (incl. embedded-AUDO)
-          ├─▶ packed SFX bank → sound_bank.bin (PCM16)
-          ├─▶ room manifest · fonts · borders
-          └─▶ 3ds/U3DS/  ← copy this to the card</pre>
+      <pre class="flow">data.win ─┬─▶ texture atlas  ▸ 522 pages .t3x
+          ├─▶ streamed music ▸ 248 × .bcwav
+          ├─▶ packed SFX     ▸ sound_bank.bin
+          └─▶ 3ds/U3DS/      ◀ copy to card</pre>
       <p>The game's own <code>data.win</code> is <b>never modified</b> — it's parsed at runtime on the
       console. That's why this page can hand you a converter instead of a download.</p>
     </article>
   </div>
 </section>
 
-<!-- ══════════════════ BUILD ══════════════════ -->
+<!-- ══════════════ BUILD ══════════════ -->
 <section id="build" class="section">
   <h2><span class="num">03</span> Build it yourself</h2>
   <p class="sub">devkitARM + libctru. The whole runner builds in under a minute.</p>
@@ -200,20 +204,32 @@ cmake -S . -B build/n3ds -G Ninja \
   -DPLATFORM=n3ds -DCMAKE_BUILD_TYPE=Release
 cmake --build build/n3ds
 # => build/n3ds/cinnamon.3dsx</code></pre>
-  <p class="sub">CI does this automatically — see <a href=".github/workflows/build.yml"><code>.github/workflows/build.yml</code></a>.</p>
+  <p class="sub">CI does this on every push —
+    <a href="https://github.com/RANCH-BLAD/UNDERTALE-ON-3DS/blob/main/.github/workflows/build.yml">.github/workflows/build.yml</a>.</p>
+  <div class="linkrow">
+    <a class="btn" href="https://github.com/RANCH-BLAD/UNDERTALE-ON-3DS">◧ Repository</a>
+    <a class="btn" href="https://github.com/RANCH-BLAD/UNDERTALE-ON-3DS/releases/latest">▼ Releases</a>
+    <a class="btn" href="https://github.com/RANCH-BLAD/UNDERTALE-ON-3DS/blob/main/README.md">▤ README</a>
+    <a class="btn" href="https://github.com/RANCH-BLAD/UNDERTALE-ON-3DS/blob/main/LICENSE">§ License</a>
+  </div>
 </section>
 
-<!-- ══════════════════ LEGAL ══════════════════ -->
+<!-- ══════════════ LEGAL ══════════════ -->
 <section id="legal" class="section">
   <h2><span class="num">04</span> THE LEGAL SLUDGE REPORT</h2>
   <div class="legal">
-    <p><b>No game assets are distributed here.</b> No <code>data.win</code>, no sprites, no music, no fonts.
-    Not in the repo, not in Releases, not in CI artifacts.</p>
+    <p><b>No game assets are distributed here.</b> No <code>data.win</code>, no sprites, no music, no
+    fonts — not in the repo, not in Releases, not in CI artifacts. The build asserts it.</p>
     <p><b>You must own Undertale.</b> The converter reads <i>your</i> copy and generates assets for
-    <i>your</i> console. That's the whole model — it is not a way to get the game.</p>
-    <p><b>Licences.</b> The runner lineage (<i>Cinnamon</i>, by Project Sunshine Native) is
-    <b>MPL-2.0</b>; the 3DS bring-up and this archive carry the terms in <a href="LICENSE">LICENSE</a>.
-    Undertale is © Toby Fox. This project is unaffiliated with Toby Fox and with Nintendo.</p>
+    <i>your</i> console. That is the whole model — it is not a way to get the game.</p>
+    <p><b>Licences.</b> The runner lineage (<i>Cinnamon</i>, by Project Sunshine Native) carries its own
+    upstream licence; this tree's terms are in the
+    <a href="https://github.com/RANCH-BLAD/UNDERTALE-ON-3DS/blob/main/LICENSE">LICENSE</a>.
+    Undertale and Deltarune are © Toby Fox. This project is unaffiliated with Toby Fox and with
+    Nintendo, and contains no assets from either.</p>
+    <p><b>About the look.</b> This page borrows a palette and a chunky-pixel feel as a tribute. Every
+    graphic here is original — the egg logo is hand-built from SVG rectangles, not from any game
+    sprite.</p>
     <p class="egg">🥚</p>
   </div>
 </section>

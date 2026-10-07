@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="96" height="96" shape-rendering="crispEdges" role="img" aria-label="Pixel egg">
+  <rect width="16" height="16" fill="#000a1a"/>
+  <!-- faint CRT pixel grid -->
+  <g fill="#ffffff" opacity="0.035">
+    <rect x="0" y="0" width="16" height="1"/><rect x="0" y="2" width="16" height="1"/>
+    <rect x="0" y="4" width="16" height="1"/><rect x="0" y="6" width="16" height="1"/>
+    <rect x="0" y="8" width="16" height="1"/><rect x="0" y="10" width="16" height="1"/>
+    <rect x="0" y="12" width="16" height="1"/><rect x="0" y="14" width="16" height="1"/>
+  </g>
+  <!-- egg shell (cream) -->
+  <g fill="#f4f0dc">
+    <rect x="6" y="2" width="4" height="1"/>
+    <rect x="4" y="3" width="8" height="1"/>
+    <rect x="3" y="4" width="10" height="1"/>
+    <rect x="2" y="5" width="12" height="3"/>
+    <rect x="2" y="8" width="12" height="3"/>
+    <rect x="3" y="11" width="10" height="1"/>
+    <rect x="4" y="12" width="8" height="1"/>
+    <rect x="6" y="13" width="4" height="1"/>
+  </g>
+  <!-- shading -->
+  <g fill="#c9c2a6">
+    <rect x="2" y="8" width="1" height="3"/>
+    <rect x="3" y="11" width="1" height="1"/>
+    <rect x="4" y="12" width="1" height="1"/>
+    <rect x="6" y="13" width="1" height="1"/>
+  </g>
+  <!-- cracked zigzag, the archive's hatch mark -->
+  <g fill="#8a7d55">
+    <rect x="6" y="5" width="2" height="1"/>
+    <rect x="8" y="6" width="2" height="1"/>
+    <rect x="6" y="7" width="2" height="1"/>
+    <rect x="8" y="8" width="2" height="1"/>
+    <rect x="6" y="9" width="2" height="1"/>
+  </g>
+  <!-- cyan glint -->
+  <rect x="4" y="5" width="2" height="1" fill="#7fecff"/>
+</svg>
