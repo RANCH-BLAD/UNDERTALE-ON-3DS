@@ -1,0 +1,72 @@
+name: Build
+
+# Builds the 3DS runner with NO game data present.
+# If this workflow ever needs an asset to succeed, something is wrong.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  runner:
+    name: runner (3dsx)
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: |
+          cmake -S . -B build/n3ds -G Ninja \
+            -DCMAKE_TOOLCHAIN_FILE=$DEVKITPRO/cmake/3DS.cmake \
+            -DPLATFORM=n3ds -DCMAKE_BUILD_TYPE=Release
+
+      - name: Assert no game data was committed
+        run: |
+          if git ls-files | grep -Ei 'data\.win|game\.unx|\.bcwav$|sound_bank\.bin|atlas\.bin|direct_assets\.bin|\.t3x$'; then
+            echo "::error::Game data was committed to the repo. This must never ship."
+            exit 1
+          fi
+          echo "clean: no game assets tracked."
+
+      - name: Build
+        run: cmake --build build/n3ds
+
+      - name: Report artifact
+        run: ls -la build/n3ds/cinnamon.3dsx && md5sum build/n3ds/cinnamon.3dsx
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: U3DS-3dsx
+          path: build/n3ds/cinnamon.3dsx
+          if-no-files-found: error
+
+  preprocessor:
+    name: preprocessor (host tool)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S tools/n3ds-preprocess -B build/n3ds-preprocess -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build/n3ds-preprocess
+
+      - name: Smoke test (no args prints usage and exits non-zero)
+        run: |
+          set +e
+          ./build/n3ds-preprocess/n3ds-preprocess > /tmp/usage.txt 2>&1
+          code=$?
+          cat /tmp/usage.txt
+          set -e
+          grep -qi "usage" /tmp/usage.txt
+          test "$code" -ne 0
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: n3ds-preprocess-linux-x86_64
+          path: build/n3ds-preprocess/n3ds-preprocess
+          if-no-files-found: error
