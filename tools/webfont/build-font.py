@@ -209,7 +209,7 @@ for nid in sorted(strings):
         b = s.encode("utf-16-be") if pid == 3 else s.encode("latin-1")
         recs += struct.pack(">HHHHHH", pid, eid, lid, nid, len(b), len(blob))
         blob += b
-name = struct.pack(">HHH", 0, len(strings)*2, len(recs)) + recs + blob
+name = struct.pack(">HHH", 0, len(strings)*2, 6 + len(recs)) + recs + blob
 
 post = struct.pack(">IIhhIIIII", 0x00030000, 0, 0, 0, 0, 0, 0, 0, 0)
 
