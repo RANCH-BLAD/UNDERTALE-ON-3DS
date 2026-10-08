@@ -39,7 +39,8 @@
 /* ── the bundled pixel face ─────────────────────────────────── */
 @font-face{
   font-family:"U3DS Pixel";
-  src:url("u3ds-pixel.ttf") format("truetype");
+  /* version query: busts cached font failures when the file is rebuilt */
+  src:url("u3ds-pixel.ttf?v=4") format("truetype");
   font-weight:400;
   font-style:normal;
   font-display:swap;
