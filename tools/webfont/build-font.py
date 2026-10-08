@@ -236,7 +236,8 @@ assert len(os2) == 96, len(os2)
 
 tables = {"head":head, "hhea":hhea, "maxp":maxp, "OS/2":os2, "hmtx":hmtx,
           "cmap":cmap, "loca":loca_b, "glyf":glyf, "name":name, "post":post}
-order = ["head","hhea","maxp","OS/2","hmtx","cmap","loca","glyf","name","post"]
+# The sfnt directory MUST be sorted by tag (browsers enforce this; FreeType is lax).
+order = sorted(tables)
 
 n = len(order)
 sr = 16 * (2 ** (n.bit_length() - 1)); es = n.bit_length() - 1; rs = n*16 - sr
