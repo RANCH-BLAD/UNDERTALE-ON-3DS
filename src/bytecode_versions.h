@@ -1,3 +1,8 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2026 RANCH-BLAD
+ *
+ * Part of U3DS. See LICENSING.md.
+ */
 #pragma once
 
 // To avoid unused code in production builds that are only used for a single game (example: PlayStation 2 target), we can enable/disable specific bytecode versions

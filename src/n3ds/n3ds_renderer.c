@@ -1,3 +1,8 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2026 RANCH-BLAD
+ *
+ * Part of U3DS. See LICENSING.md.
+ */
 #include "n3ds_renderer.h"
 #include "n3ds_platform_config.h"
 #include "n3ds_debug_log.h"

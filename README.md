@@ -209,11 +209,23 @@ sdmc:/3ds/U3DS/
   not in the repo, not in Releases, not in CI artifacts.
 - **You must own Undertale.** The patcher reads *your* copy and generates assets for *your*
   console. This is not a way to obtain the game.
-- The runner lineage — **Cinnamon**, by [Project Sunshine Native](https://github.com/Project-Sunshine-Native/cinnamon) —
-  is credited here and carries its own upstream licence. See [`LICENSE`](LICENSE) for the terms
-  that apply to this tree.
-- **Undertale is © Toby Fox.** This project is not affiliated with Toby Fox, with Nintendo,
-  or with 1997. **KROMER NOT INCLUDED.**
+- **LICENSE: AGPL-3.0-or-later.** This tree descends from **Cinnamon** (MPL-2.0), which
+  descends from **Butterscotch** (AGPL-3.0). AGPL is the root, so AGPL is what this is. The
+  old MIT notice was [[WRONG]] and has been retired. Full chain, per-file attribution and
+  the reasoning: [`LICENSING.md`](LICENSING.md).
+- **Credits, and not the drive-by kind.** [Butterscotch](https://github.com/ButterscotchRunner/Butterscotch)
+  for the open-source runner this whole lineage rests on.
+  [Cinnamon](https://github.com/Project-Sunshine-Native/cinnamon) by `@casrielasriel` and
+  `@grayforz24682` for the 3DS/Wii U re-host. devkitPro for the toolchain. Every one of them
+  earned it and none of them were asked to be here.
+- **Undertale and Deltarune are © Toby Fox.** Not affiliated with Toby Fox, with Nintendo,
+  or with 1997.
+- **AND A [[SPECIAL THANK YOU]] TO TOBY FOX HIMSELF** — not for the game. For the *foam*. On
+  April Fools' 2023 a glitch in the Undertale/Deltarune newsletter subscribed roughly 1,000
+  people to the **"Foam Shower"** tier, and those people received a photograph of Toby Fox in
+  swim trunks, entirely covered in a large amount of foam. He then **requested that exact
+  photograph be used as his Wikipedia portrait**, which it now is. A man who owned a bit so
+  completely that he made it his face. **[[NOW THAT'S A BIG SHOT]]**.
 
 ---
 
