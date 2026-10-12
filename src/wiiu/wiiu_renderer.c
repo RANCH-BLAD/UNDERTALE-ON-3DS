@@ -1,3 +1,8 @@
+/* SPDX-License-Identifier: AGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2026 RANCH-BLAD
+ *
+ * Part of U3DS. See LICENSING.md.
+ */
 #include "wiiu_renderer.h"
 
 #include "textured_quad_gsh.h"
